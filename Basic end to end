@@ -1,0 +1,96 @@
+---
+title: "Idea to release"
+objective: "Show how using a prompt, agents can move an idea through the entire lifecycle."
+audience: "Project Managers and Business Leaders who are interested in how AI can improve productivity"
+prompt_type: "user"
+tags: ["end to end","agentic workflow"]
+models: ["Claude"]
+
+How_to_use:
+"1, Copy the prompt."
+"2, Add an idea name, description and target release date."
+"3, Press enter."
+
+prerequisites:
+  - "The orchestration tool is connected to your Loop project and is using the Loop MCP tools."
+  - "Add a new idea and description each time. If you want a list of ideas and descriptions then ping James."
+
+expected_outcome:
+"The agents will create in Loop an epic and stories for the new idea. The agents will then use Loop to create a new branch, create code, deploy to test, run tests, deploy to live, and write a summary about what it has done. It will update all steps within Loop as it goes along so you can show the changes in Plan, Control, Build, Deploy,Test and Velocity. 
+
+version: "1.0"
+last_updated: "2025-11-04"
+author: "James Hunter"
+
+---
+
+## Prompt (copy/paste)
+
+Execute the full DevOps lifecycle workflow for my new feature:
+
+**Feature Name:** <<ADD YOUR IDEA NAME HERE>>
+**Description:** <<ADD YOUR IDEA DESCRIPTION HERE>>
+**Priority:** <<ADD A PRIORITY HERE ie High, Medium or Low>>
+
+**Target Release Date:** <<ADD A TARGET RELEASE DATE HERE ie 2025-11-13>>
+
+Please execute the following end-to-end workflow:
+
+1. **Planning Phase:**
+   - Create an Epic in Plan (EchoL application, PAYMENT project) with the feature name and description
+   - Create initial user stories to break down the epic
+   - Create a release event in Velocity with the target date
+   - Track the work item in the value stream
+
+2. **Development Phase:**
+   - Create a feature branch in Control (use feature/[epic-id]-[feature-name] naming)
+   - Move the work items to "Active" status
+   - Create placeholder code files for the feature (suggest appropriate file structure)
+   - Commit the initial implementation
+
+3. **Code Review Phase:**
+   - Create a pull request from the feature branch to main
+   - Make appropriate edits to the code
+   - Get my pending approvals list
+   - Guide me through the review process
+   - When you commit the code change, we use the format “workitem ID – <<message>>”
+
+4. **Build & Test Phase:**
+   - Monitor build data in Velocity after merge
+   - List available test projects and execute relevant tests
+   - Monitor test results and provide status
+   - Download and analyze logs if there are failures
+
+5. **Deployment Phase:**
+   - List Deploy applications and environments
+   - Create a snapshot of the component versions
+   - Deploy to DEV environment
+   - Monitor deployment status
+   - Verify the deployment inventory
+
+6. **Quality Gates Phase:**
+   - Show the pipeline and gate status in Velocity
+   - Compare DEV environment with TEST/STAGING
+   - Deploy to STAGING environment
+   - Execute acceptance tests
+
+7. **Production Phase:**
+   - Schedule or execute production deployment
+   - Monitor production deployment status
+   - Verify production inventory
+   - Run smoke tests
+
+8. **Post-Deployment Phase:**
+   - Close work items in Plan
+   - Update release event status in Velocity
+   - Generate and display key metrics (lead time, deployment frequency, test results)
+   - Suggest next steps and improvements
+
+**Additional Parameters:**
+- Component Name: [if known, otherwise suggest based on feature]
+- Test Suite to Execute: [if known, otherwise suggest based on feature type]
+- Deployment Process: [if known, otherwise use default]
+- Skip any steps that require manual intervention but document what I need to do
+
+Pause at each major phase to show me status and wait for my confirmation to proceed to the next phase.
+
